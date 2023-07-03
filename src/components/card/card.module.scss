@@ -1,0 +1,16 @@
+.card{
+  width: 250px;
+  padding: 20px;
+  background: #1D1D1D;
+  border-radius: 20px;
+  img{
+    width: 250px;
+    height: 160px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 20px;
+  }
+  h3,p{
+    color: white;
+  }
+}

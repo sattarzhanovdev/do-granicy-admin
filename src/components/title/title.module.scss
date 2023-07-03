@@ -1,0 +1,17 @@
+.container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  .title{
+    width: 600px;
+    height: 60px;
+    background: rebeccapurple;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 0 10px 10px;
+    h2{
+      color: white;
+    }
+  }
+}

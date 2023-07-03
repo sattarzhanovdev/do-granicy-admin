@@ -1,0 +1,41 @@
+.add{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  div{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 15px 0;
+    span{
+      margin: 0 25px;
+      text-align: left;
+    }
+    input{
+      width: 350px;
+      height: 46px;
+      padding: 0 12px;
+      outline: none;
+      border-radius: 10px;
+      border: 1px solid black;
+      &.file{
+        height: 22px;
+        border: 0;
+      }
+    }
+  }
+  button{
+    margin-left: 25px;
+    width: 140px;
+    height: 46px;
+    border-radius: 50px;
+    background: #2ABE5C;
+    color: white;
+    font-size: 16px;
+    border: 0;
+  }
+  .loader{
+    margin-top: 50px;
+  }
+}

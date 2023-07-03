@@ -1,0 +1,50 @@
+.main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .up{
+    width: 1000px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 100px;
+    form{
+      display: flex;
+      align-items: center;
+      input{
+        width: 250px;
+        height: 40px;
+        padding: 0 12px;
+        font-size: 16px;
+        outline: none;
+        border-radius: 10px 0 0 10px;
+        border: 1px solid black;
+      }
+      button{
+        width: 100px;
+        height: 42px;
+        margin-left: 0;
+        border-radius: 0 10px 10px 0;
+        background: #2ABE5C;
+        color: white;
+        border: 1px solid black;
+      }
+    }
+    button{
+      width: 200px;
+      height: 42px;
+      border-radius: 60px;
+      border: none;
+      background: #2ABE5C;
+      color: white;
+    }
+  }
+  .cards{
+    width: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    margin-top: 50px;
+  }
+}

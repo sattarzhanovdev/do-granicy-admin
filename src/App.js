@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import './App.scss'
+import axios from 'axios'
+import { Route, Routes } from 'react-router-dom'
+import { Pages } from './pages'
+import * as firebase from 'firebase/app'
+
+import { getStorage } from 'firebase/storage'
+import { firebaseConfig } from './firebase'
+
+axios.defaults.baseURL = 'https://do-granicy-default-rtdb.asia-southeast1.firebasedatabase.app'
+const app = firebase.initializeApp(firebaseConfig)
+export const storage = getStorage(app);
+
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Routes>
+        <Route 
+          path='/'
+          element={<Pages.Main />}  
+        />
+        <Route 
+          path='/add/'
+          element={<Pages.Add />}
+        />
+      </Routes>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

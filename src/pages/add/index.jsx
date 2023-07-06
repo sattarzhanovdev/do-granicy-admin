@@ -5,14 +5,14 @@ import { useNavigate } from 'react-router-dom'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import { storage } from '../../App'
 import { useForm } from 'react-hook-form'
-import { CircularProgress, LinearProgress, Typography } from '@mui/material'
+import { CircularProgress } from '@mui/material'
 
 const Add  = () => {
   const [ active, setActive ] = React.useState(false)
   const [ value, setValue ] = React.useState(0)
+  const [ dep, setDep ] = React.useState(0)
+  const [ newsData, setNewsData ] = React.useState([])
   const Navigate = useNavigate()
-
-
 
   const { 
     register,
@@ -39,7 +39,8 @@ const Add  = () => {
           API.postNews(
             {
               ...data,
-              image: downloadURL
+              image: downloadURL,
+              themes: newsData
             }
           ).then(() => {
             Navigate('/')
@@ -48,6 +49,10 @@ const Add  = () => {
         });
     })
   }
+
+  React.useEffect(() => {
+    setNewsData(newsData)
+  }, [dep])
 
   return (
     <form 
@@ -70,6 +75,40 @@ const Add  = () => {
           {...register('desc')}
         />
       </div>
+      {
+        newsData.map((item, i) => (
+          <div className={c.topic} key={i}>
+            <div>
+              <span>Под-тема</span>
+              <input 
+                type="text" 
+                placeholder='Под-тема'
+                onChange={e => {
+                  newsData[i].topic = e.target.value
+                }}
+              />
+            </div>
+            <div>
+              <span>Текст</span>
+              <input 
+                type="text" 
+                placeholder='Текст'
+                onChange={e => {
+                  newsData[i].text = e.target.value
+                }}
+              />
+            </div>
+          </div>
+        ))
+      }
+      <li
+        onClick={() => {
+          newsData.push({topic: '', text: ''})
+          setDep(Math.random())
+        }}
+      >
+        Создать под-тему
+      </li>
       <div>
         <span>Фотография</span>
         <input 
@@ -78,7 +117,7 @@ const Add  = () => {
           {...register('file')}
         />
       </div>
-      <button>
+      <button type='submit'>
         Добавить
       </button>
 
@@ -86,7 +125,7 @@ const Add  = () => {
         active ?
         <div className={c.loader}>
           <CircularProgress determinate value={value} />
-          <h3>Подожите...</h3>
+          <h3>Подождите...</h3>
         </div> :
         null
       }

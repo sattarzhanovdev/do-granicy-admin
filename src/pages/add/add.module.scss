@@ -8,6 +8,27 @@
     align-items: center;
     justify-content: flex-start;
     margin: 15px 0;
+    &.topic{
+      flex-direction: column;
+      align-items: flex-start;
+      span{
+        width: 70px;
+        margin: 0 25px;
+        text-align: left;
+      }
+      input{
+        width: 350px;
+        height: 46px;
+        padding: 0 12px;
+        outline: none;
+        border-radius: 10px;
+        border: 1px solid black;
+        &.file{
+          height: 22px;
+          border: 0;
+        }
+      }
+    }
     span{
       margin: 0 25px;
       text-align: left;
@@ -24,6 +45,13 @@
         border: 0;
       }
     }
+  }
+  li{
+    list-style: none;
+    margin: 0 25px;
+    color: #2ABE5C;
+    text-decoration: underline;
+    cursor: pointer;
   }
   button{
     margin-left: 25px;

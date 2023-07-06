@@ -3,6 +3,7 @@ import { Components } from '../../components'
 import { GetNews } from '../../helpers'
 import c from './main.module.scss'
 import { useNavigate } from 'react-router-dom'
+import { API } from '../../api'
 
 const Main = () => {
 
@@ -19,6 +20,15 @@ const Main = () => {
     setValue('')
   }
 
+  React.useEffect(() => {
+    searching()
+    setValue('')
+    setTimeout(() => {
+      searching()
+      setValue('')
+    }, 1000)
+
+  }, [])
 
   return (
     <div className={c.main}>
@@ -38,7 +48,9 @@ const Main = () => {
             }}>Поиск</button>
           </form>
           <button
-            onClick={() => Navigate('/add/')}
+            onClick={() => {
+              Navigate('/add/')
+            }}
           >
             <span>+</span> добавить новость
           </button>

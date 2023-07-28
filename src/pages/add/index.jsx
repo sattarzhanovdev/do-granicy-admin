@@ -20,18 +20,20 @@ const Add  = () => {
     reset
   } = useForm()
 
-  const latinToCyrillic = {
-    a: "а", b: "б", c: "ц", d: "д", e: "е", f: "ф", g: "г", h: "х", i: "и", j: "ж", k: "к", l: "л",
-    m: "м", n: "н", o: "о", p: "п", q: "к", r: "р", s: "с", t: "т", u: "у", v: "в", w: "в", x: "кс",
-    y: "ы", z: "з",
-    A: "А", B: "Б", C: "Ц", D: "Д", E: "Е", F: "Ф", G: "Г", H: "Х", I: "И", J: "Ж", K: "К", L: "Л",
-    M: "М", N: "Н", O: "О", P: "П", Q: "К", R: "Р", S: "С", T: "Т", U: "У", V: "В", W: "В", X: "Кс",
-    Y: "Ы", Z: "З"
+  const cyrillicToLatin = {
+    а: "a", б: "b", в: "v", г: "g", д: "d", е: "e", ё: "yo", ж: "zh", з: "z", и: "i",
+    й: "y", к: "k", л: "l", м: "m", н: "n", о: "o", п: "p", р: "r", с: "s", т: "t",
+    у: "u", ф: "f", х: "kh", ц: "ts", ч: "ch", ш: "sh", щ: "sch", ъ: "", ы: "y",
+    ь: "", э: "e", ю: "yu", я: "ya",
+    А: "A", Б: "B", В: "V", Г: "G", Д: "D", Е: "E", Ё: "Yo", Ж: "Zh", З: "Z", И: "I",
+    Й: "Y", К: "K", Л: "L", М: "M", Н: "N", О: "O", П: "P", Р: "R", С: "S", Т: "T",
+    У: "U", Ф: "F", Х: "Kh", Ц: "Ts", Ч: "Ch", Ш: "Sh", Щ: "Sch", Ъ: "", Ы: "Y",
+    Ь: "", Э: "E", Ю: "Yu", Я: "Ya"
   };
 
   const postNew = (data) => {	
     setActive(!active)
-    const latin = data.title.replace(/[a-zA-Z]/g, match => latinToCyrillic[match] || match);
+    const latin = data.title.replace(/./g, char => cyrillicToLatin[char] || char);
 
     const storageRef = ref(storage, `${data.file[0].name}`);
     const uploadTask = uploadBytesResumable(storageRef, data.file[0]);

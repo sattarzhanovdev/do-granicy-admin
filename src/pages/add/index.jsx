@@ -35,9 +35,7 @@ const Add  = () => {
     setActive(!active)
     const latin = data.title.replace(/./g, char => cyrillicToLatin[char] || char);
 
-    const regex = /[%]20/g;
-
-    const replacedText = latin.replace(regex, '—');
+    const replacedText = latin.replace(/\s/g, "-");
     console.log(replacedText);
 
     const storageRef = ref(storage, `${data.file[0].name}`);

@@ -35,6 +35,11 @@ const Add  = () => {
     setActive(!active)
     const latin = data.title.replace(/./g, char => cyrillicToLatin[char] || char);
 
+    const regex = /[%]20/g;
+
+    const replacedText = latin.replace(regex, '—');
+    console.log(replacedText);
+
     const storageRef = ref(storage, `${data.file[0].name}`);
     const uploadTask = uploadBytesResumable(storageRef, data.file[0]);
     uploadTask.on("state_changed",
@@ -53,7 +58,7 @@ const Add  = () => {
               ...data,
               image: downloadURL,
               themes: newsData,
-              latin: latin
+              latin: replacedText
             }
           ).then(() => {
             Navigate('/')
